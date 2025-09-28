@@ -49,13 +49,13 @@ function showtask() {
         type="checkbox" 
         ${taskitem.status === "completed" ? "checked" : ""}
         onchange="markComplete(${taskitem.id})"
-        class="w-6 h-6 border-2 rounded mr-3"
+        class="w-6 h-6 border-2 rounded "
       >
     <h3 class ="font-semibold"> ${taskitem.name}</h3>
     <p class="text-gray-600">Due:${taskitem.dueDate}</p>
     <button onclick= "edit(${
       taskitem.id
-    })" class="mt-2 bg-red-500 text-white px-3 py-1 rounded">Edit</button>
+    })" class="mt-2 border bg-orange-500 text-black px-3 py-1 rounded">Edit</button>
     <button onclick= "deletetask(${
       taskitem.id
     })" class="mt-2 bg-red-500 text-white px-3 py-1 rounded">Delete</button>
@@ -64,4 +64,79 @@ function showtask() {
     taskdiv.appendChild(taskelement)
   })
 }
+document
+  .getElementById("taskform")
+  .addEventListener("submit", function (event) {
+    event.preventDefault() //stop refesh
+    let name = document.getElementById("taskname").value
+    let date = document.getElementById("date").value
+    if (name.trim() === "") {
+      alert("Please enter the name for your task")
+      return //no name stop
+    }
+
+    let newtask = {
+      id: Date.now(),
+      name: name,
+      dueDate: date,
+      status: "pending",
+    }
+    sampletasks.push(newtask)
+    showtask()
+    save()
+    document.getElementById("taskform").reset()
+  })
 showtask()
+
+// delete the task
+function deletetask(taskid) {
+  if (!confirm("Are you sure want to delete this task")) {
+    return
+  }
+  sampletasks = sampletasks.filter(function (task) {
+    return task.id !== taskid
+  })
+  showtask()
+  save()
+}
+function toggle(taskid) {
+  const task = sampletasks.find(function (task) {
+    return task.id === taskid
+  })
+  if (task) {
+    if (task.status === "completed") {
+      task.status = "pending"
+    } else {
+      task.status = "completed"
+    }
+    save()
+    showtask()
+  }
+}
+function markComplete(taskid) {
+  const task = sampletasks.find((task) => task.id === taskid)
+  if (task) {
+    task.status = task.status === "completed" ? "pending" : "completed"
+    save()
+    showtask()
+  }
+}
+function edit(taskid) {
+  const task = sampletasks.find(function (task) {
+    return task.id === taskid
+  })
+  if (!task) return
+
+  let newname = prompt("Edit your name of the task", task.name)
+  if (newname !== null) {
+    if (newname.trim() === "") {
+      alert("The task can not be empty")
+      return edit(taskid)
+    }
+    task.name = newname.trim()
+    showtask()
+    save()
+  }
+}
+showtask()
+save()
