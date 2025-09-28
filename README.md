@@ -29,5 +29,5 @@ A responsive and interactive task management dashboard built with HTML5, JavaScr
 
 1. **Clone the repository**:
    ```bash
-   git clone <your-repo-url>
-   cd task-manager
+   git clone https://github.com/Yvette334/task.git
+   
