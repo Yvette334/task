@@ -1,8 +1,9 @@
-let tasks = [
+let sampletasks = JSON.parse(localStorage.getItem("tasks")) || [
   {
     id: 1,
-    name: "Complete portfolio website assignment",
+    name: "Complete portfolio website",
     dueDate: "2025-09-30",
+    status: "pending",
   },
   {
     id: 2,
@@ -12,20 +13,20 @@ let tasks = [
   },
   {
     id: 3,
-    name: "Prepare presentation for Monday stand-up",
+    name: "Prepare Monday presentation",
     dueDate: "2025-09-29",
     status: "completed",
   },
   {
     id: 4,
-    name: "Review Tailwind CSS documentation",
+    name: "Review Tailwind CSS",
     dueDate: "2025-10-01",
     status: "pending",
   },
   {
     id: 5,
-    name: "Practice DOM manipulation exercises",
+    name: "Practice DOM exercises",
     dueDate: "2025-09-27",
     status: "completed",
   },
-];
+]

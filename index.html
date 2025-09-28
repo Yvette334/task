@@ -3,45 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task management</title>
+    <title>Task Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-300 min-h-screen">
-    <header class="bg-blue-600 shadow-lg text-center">
+    <header class="bg-blue-600 shadow-lg text-center text-white">
       <div class="container mx-auto px-4 py-3">
         <h1 class="font-bold text-3xl">Task Management System</h1>
         <p class="mt-2">Organize your task efficiently</p>
       </div>
     </header>
-    <main class="container mx-auto py-8">
+    <main class="container mx-auto py-8 px-4">
       <div class="bg-white rounded-lg shadow-md p-6 mb-8 mx-auto max-w-2xl">
         <form class="text-center" id="taskform">
           <h2 class="font-bold text-2xl mb-6">Add New Task</h2>
-          <h3 class="font-semibold mb-2 text-left">Task Name</h3>
-          <input
-            id="taskname"
-            class="w-full px-3 py-2 border rounded-lg"
-            type="text"
-            placeholder="Enter your Task"
-            required
-          />
-          <h3 class="font-semibold mb-2 text-left">Due Date</h3>
-          <input
-            id="date"
-            type="date"
-            class="w-full px-3 py-2 border rounded-lg"
-          />
+          <div class="mb-4">
+            <h3 class="font-semibold mb-2 text-left">Task Name</h3>
+            <input
+              id="taskname"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              type="text"
+              placeholder="Enter your Task"
+              required
+            />
+          </div>
+          <div class="mb-6">
+            <h3 class="font-semibold mb-2 text-left">Due Date</h3>
+            <input
+              id="date"
+              type="date"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
           <button
             type="submit"
-            id="button"
-            class="bg-blue-600 py-3 px-5 font-semibold mt-6 rounded-lg"
+            class="bg-blue-600 text-white py-3 px-6 font-semibold rounded-lg hover:bg-blue-700 transition duration-300 w-full"
           >
             Add Task
           </button>
         </form>
       </div>
-      <div class="bg-white rounded-lg shadow-md p-6 mb-8 mx-auto max-w-2xl">
-        <h2 id="task" class="text-2xl font-semibold mb-4 flex">Your Task</h2>
+      <div class="bg-white rounded-lg shadow-md p-6 mx-auto max-w-4xl">
+        <h2 class="text-2xl font-semibold mb-6 text-center">Your Tasks</h2>
+        <div id="task"></div>
       </div>
     </main>
     <script src="script.js"></script>
