@@ -36,3 +36,4 @@ A responsive and interactive task management dashboard built with HTML5, JavaScr
 
    screenshot
    ```
+   ![Image Alt](https://github.com/Yvette334/task/blob/e0112215ba466ff03ff0428aec30f700f6748497/Screenshot%202025-09-28%20230121.png)
