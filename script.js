@@ -38,25 +38,30 @@ function showtask() {
   taskdiv.innerHTML = ""
   sampletasks.forEach(function (taskitem) {
     let taskelement = document.createElement("div")
-    taskelement.className = "p-3 mb-2 border rounded-lg"
+    taskelement.className =
+      "flex items-center justify-between p-3 mb-2 border rounded-lg"
     if (taskitem.status === "completed") {
       taskelement.className =
-        "flex items-center justify-between p-3 mb-2 border rounded-lg  bg-green-500"
+        "bg-green-500  flex items-center justify-between p-3 border rounded-lg "
     }
     taskelement.innerHTML = `
-    <div class=" flex p-6 justify-between space-x-6 items-center">
+    <div class="items-center">
     <input 
         type="checkbox" 
         ${taskitem.status === "completed" ? "checked" : ""}
         onchange="markComplete(${taskitem.id})"
         class="w-6 h-6 border-2 rounded "
       >
-    <h3 class ="font-semibold"> ${taskitem.name}</h3>
-    <p class="text-gray-600">Due:${taskitem.dueDate}</p>
-    <button onclick= "edit(${
+    <h3 class ="font-semibold line-through flex justify-between"> ${
+      taskitem.name
+    }</h3>
+    <p class="text-gray-600 ">Due:${taskitem.dueDate}</p>
+    </div>
+    <div class="space-x-3">
+    <button  onclick="edit(${
       taskitem.id
     })" class="mt-2 border bg-orange-500 text-black px-3 py-1 rounded">Edit</button>
-    <button onclick= "deletetask(${
+    <button  onclick= "deletetask(${
       taskitem.id
     })" class="mt-2 bg-red-500 text-white px-3 py-1 rounded">Delete</button>
     </div>
@@ -99,20 +104,6 @@ function deletetask(taskid) {
   showtask()
   save()
 }
-function toggle(taskid) {
-  const task = sampletasks.find(function (task) {
-    return task.id === taskid
-  })
-  if (task) {
-    if (task.status === "completed") {
-      task.status = "pending"
-    } else {
-      task.status = "completed"
-    }
-    save()
-    showtask()
-  }
-}
 function markComplete(taskid) {
   const task = sampletasks.find((task) => task.id === taskid)
   if (task) {
@@ -121,6 +112,13 @@ function markComplete(taskid) {
     showtask()
   }
 }
+function alltask(taskid) {
+  return sampletasks.filter((status) => {
+    return taskid.status.include(taskid)
+  })
+}
+
+
 function edit(taskid) {
   const task = sampletasks.find(function (task) {
     return task.id === taskid

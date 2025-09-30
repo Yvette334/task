@@ -45,7 +45,26 @@
       </div>
       <div class="bg-white rounded-lg shadow-md p-6 mx-auto max-w-4xl">
         <h2 class="text-2xl font-semibold mb-6 text-center">Your Tasks</h2>
-        <div id="task"></div>
+        <button
+          type="submit"
+          onclick="alltask()"
+          class="bg-blue-600 text-white text-center space-x-8 mr-4 py-3 px-6 font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
+        >
+          All Task</button
+        ><button
+          type="submit"
+          onclick="allcompleted()"
+          class="bg-blue-600 text-white py-3 mr-4 px-6 font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
+        >
+          Completed</button
+        ><button
+          type="submit"
+          onclick="allpending()"
+          class="bg-blue-600 text-white py-3 px-6 font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
+        >
+          Pending
+        </button>
+        <div class="py-6" id="task"></div>
       </div>
     </main>
     <script src="script.js"></script>
