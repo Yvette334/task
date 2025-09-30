@@ -34,6 +34,7 @@ function save() {
   localStorage.setItem("tasks", JSON.stringify(sampletasks))
 }
 let taskdiv = document.getElementById("task")
+let currentfil = "all"
 function showtask() {
   taskdiv.innerHTML = ""
   sampletasks.forEach(function (taskitem) {
@@ -109,7 +110,13 @@ function markComplete(taskid) {
   if (task) {
     task.status = task.status === "completed" ? "pending" : "completed"
     save()
-    showtask()
+    if (currentfil === "completed") {
+      allcompleted()
+    } else if (currentfil === "pending") {
+      allpending()
+    } else {
+      showtask()
+    }
   }
 }
 function edit(taskid) {
@@ -125,18 +132,25 @@ function edit(taskid) {
       return edit(taskid)
     }
     task.name = newname.trim()
+    let newdate = prompt("Edit due date (YYYY-MM-DD)", task.dueDate)
+    if (newdate !== null) {
+      task.dueDate = newdate.trim()
+    }
     showtask()
     save()
   }
 }
 function alltask() {
+  currentfil = "all"
   showtask()
 }
 function allcompleted() {
+  currentfil = "completed"
   let completedtask = sampletasks.filter((task) => task.status === "completed")
   displayfiltered(completedtask)
 }
 function allpending() {
+  currentfil = "pending"
   let pendingtask = sampletasks.filter((task) => task.status === "pending")
   displayfiltered(pendingtask)
 }
